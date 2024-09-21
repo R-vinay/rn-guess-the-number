@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, TextInput, View, Alert } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  TextInput,
+  View,
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import Title from "../components/Title";
@@ -28,35 +36,39 @@ const StartGameScreen = ({ onConfirmPick }) => {
   }
 
   return (
-    <View className="flex-1 mt-8">
-      <Title text={"Guess My Number"} />
-      <View
-        style={styles.inputContainer}
-        className="flex items-center align-middle mr-2 ml-2 rounded-md p-4 mt-8 bg-orange-400"
-      >
-        <TextInput
-          className="text-center bg-white text-black p-2 border-2 border-black rounded-md text-md w-[50%] mb-4"
-          maxLength={2}
-          value={enteredNumber}
-          onChangeText={handleInput}
-          keyboardType="number-pad"
-        />
-        <View className="flex flex-row">
-          <View className="flex-1">
-            <PrimaryButton
-              title={<Ionicons name="reload-outline" size={24} />}
-              touchFn={resetInput}
+    <ScrollView className="flex-1">
+      <KeyboardAvoidingView className="flex-1" behavior="position">
+        <View className="flex-1 mt-8">
+          <Title text={"Guess My Number"} />
+          <View
+            style={styles.inputContainer}
+            className="flex items-center align-middle mr-2 ml-2 rounded-md p-4 mt-8 bg-orange-400"
+          >
+            <TextInput
+              className="text-center bg-white text-black p-2 border-2 border-black rounded-md text-md w-[50%] mb-4"
+              maxLength={2}
+              value={enteredNumber}
+              onChangeText={handleInput}
+              keyboardType="number-pad"
             />
-          </View>
-          <View className="flex-1">
-            <SecondaryButton
-              title={<MaterialIcons name="done-outline" size={24} />}
-              touchFn={handleConfirm}
-            />
+            <View className="flex flex-row">
+              <View className="flex-1">
+                <PrimaryButton
+                  title={<Ionicons name="reload-outline" size={24} />}
+                  touchFn={resetInput}
+                />
+              </View>
+              <View className="flex-1">
+                <SecondaryButton
+                  title={<MaterialIcons name="done-outline" size={24} />}
+                  touchFn={handleConfirm}
+                />
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 

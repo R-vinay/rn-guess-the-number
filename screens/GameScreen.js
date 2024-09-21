@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, FlatList, Text, View } from "react-native";
+import { Alert, FlatList, Text, View, useWindowDimensions } from "react-native";
 import Title from "../components/Title";
 import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
@@ -22,6 +22,8 @@ const GameScreen = ({ userNumber, handleGameOver }) => {
   const [guessRounds, setGuessRounds] = useState([
     { id: 1, data: initialGuess },
   ]);
+  const { width, height } = useWindowDimensions();
+  console.log(width, height);
   useEffect(() => {
     if (currentGuess === userNumber) {
       handleGameOver(guessRounds.length);
@@ -71,8 +73,8 @@ const GameScreen = ({ userNumber, handleGameOver }) => {
     }
   }
   return (
-    <View className="flex-1 items-center align-middle mt-8">
-      <View>
+    <View className={`flex-1 sm items-center align-middle mt-8`}>
+      <View className="ml-4 mr-4">
         <Title text={"Opponent's Guess"} />
         <NumberContainer currentNumber={currentGuess} />
         <View className="flex flex-row">

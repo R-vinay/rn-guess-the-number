@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, SafeAreaView } from "react-native";
+import {
+  ImageBackground,
+  SafeAreaView,
+  useWindowDimensions,
+  KeyboardAvoidingView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -14,7 +19,8 @@ export default function App() {
   const [userChosenNumber, setUserChosenNumber] = useState("");
   const [gameOver, setGameOver] = useState(true);
   const [guessRounds, setGuessRounds] = useState(0);
-
+  const { width, height } = useWindowDimensions();
+  // console.log(width, height);
   // Load fonts
   const [fontsLoaded] = useFonts({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
